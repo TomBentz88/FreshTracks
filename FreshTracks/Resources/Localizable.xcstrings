@@ -1,0 +1,54 @@
+{
+  "sourceLanguage" : "en",
+  "strings" : {
+    "%lld" : {
+
+    },
+    "Créer" : {
+
+    },
+    "Entrez quelque chose" : {
+
+    },
+    "Erreur" : {
+
+    },
+    "FreshTracks" : {
+
+    },
+    "Last" : {
+
+    },
+    "New" : {
+
+    },
+    "No" : {
+
+    },
+    "OK" : {
+
+    },
+    "Rafraîchir FreshTracks" : {
+
+    },
+    "Something went wrong" : {
+
+    },
+    "tracks" : {
+
+    },
+    "Update all the playlists with the last tracks from the library" : {
+
+    },
+    "Update FreshTracks playlists" : {
+
+    },
+    "Votre texte ici" : {
+
+    },
+    "Yes" : {
+
+    }
+  },
+  "version" : "1.1"
+}

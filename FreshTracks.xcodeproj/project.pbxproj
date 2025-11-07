@@ -1,0 +1,595 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		E2C24E4E2D5FE45700EBDBFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2C24E352D5FE45600EBDBFC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2C24E3C2D5FE45600EBDBFC;
+			remoteInfo = FreshTracks;
+		};
+		E2C24E582D5FE45700EBDBFC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E2C24E352D5FE45600EBDBFC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E2C24E3C2D5FE45600EBDBFC;
+			remoteInfo = FreshTracks;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E2C24E3D2D5FE45600EBDBFC /* FreshTracks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreshTracks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2C24E4D2D5FE45700EBDBFC /* FreshTracksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreshTracksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2C24E572D5FE45700EBDBFC /* FreshTracksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FreshTracksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		E27DA21C2D5FF19C00436AC1 /* Exceptions for "FreshTracks" folder in "FreshTracks" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Resources/Info.plist,
+			);
+			target = E2C24E3C2D5FE45600EBDBFC /* FreshTracks */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		E2C24E3F2D5FE45600EBDBFC /* FreshTracks */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				E27DA21C2D5FF19C00436AC1 /* Exceptions for "FreshTracks" folder in "FreshTracks" target */,
+			);
+			path = FreshTracks;
+			sourceTree = "<group>";
+		};
+		E2C24E502D5FE45700EBDBFC /* FreshTracksTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FreshTracksTests;
+			sourceTree = "<group>";
+		};
+		E2C24E5A2D5FE45700EBDBFC /* FreshTracksUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = FreshTracksUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E2C24E3A2D5FE45600EBDBFC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2C24E4A2D5FE45700EBDBFC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2C24E542D5FE45700EBDBFC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E2C24E342D5FE45600EBDBFC = {
+			isa = PBXGroup;
+			children = (
+				E2C24E3F2D5FE45600EBDBFC /* FreshTracks */,
+				E2C24E502D5FE45700EBDBFC /* FreshTracksTests */,
+				E2C24E5A2D5FE45700EBDBFC /* FreshTracksUITests */,
+				E2C24E3E2D5FE45600EBDBFC /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		E2C24E3E2D5FE45600EBDBFC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E2C24E3D2D5FE45600EBDBFC /* FreshTracks.app */,
+				E2C24E4D2D5FE45700EBDBFC /* FreshTracksTests.xctest */,
+				E2C24E572D5FE45700EBDBFC /* FreshTracksUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E2C24E3C2D5FE45600EBDBFC /* FreshTracks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2C24E612D5FE45700EBDBFC /* Build configuration list for PBXNativeTarget "FreshTracks" */;
+			buildPhases = (
+				E2C24E392D5FE45600EBDBFC /* Sources */,
+				E2C24E3A2D5FE45600EBDBFC /* Frameworks */,
+				E2C24E3B2D5FE45600EBDBFC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E2C24E3F2D5FE45600EBDBFC /* FreshTracks */,
+			);
+			name = FreshTracks;
+			packageProductDependencies = (
+			);
+			productName = FreshTracks;
+			productReference = E2C24E3D2D5FE45600EBDBFC /* FreshTracks.app */;
+			productType = "com.apple.product-type.application";
+		};
+		E2C24E4C2D5FE45700EBDBFC /* FreshTracksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2C24E642D5FE45700EBDBFC /* Build configuration list for PBXNativeTarget "FreshTracksTests" */;
+			buildPhases = (
+				E2C24E492D5FE45700EBDBFC /* Sources */,
+				E2C24E4A2D5FE45700EBDBFC /* Frameworks */,
+				E2C24E4B2D5FE45700EBDBFC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2C24E4F2D5FE45700EBDBFC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E2C24E502D5FE45700EBDBFC /* FreshTracksTests */,
+			);
+			name = FreshTracksTests;
+			packageProductDependencies = (
+			);
+			productName = FreshTracksTests;
+			productReference = E2C24E4D2D5FE45700EBDBFC /* FreshTracksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		E2C24E562D5FE45700EBDBFC /* FreshTracksUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E2C24E672D5FE45700EBDBFC /* Build configuration list for PBXNativeTarget "FreshTracksUITests" */;
+			buildPhases = (
+				E2C24E532D5FE45700EBDBFC /* Sources */,
+				E2C24E542D5FE45700EBDBFC /* Frameworks */,
+				E2C24E552D5FE45700EBDBFC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				E2C24E592D5FE45700EBDBFC /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				E2C24E5A2D5FE45700EBDBFC /* FreshTracksUITests */,
+			);
+			name = FreshTracksUITests;
+			packageProductDependencies = (
+			);
+			productName = FreshTracksUITests;
+			productReference = E2C24E572D5FE45700EBDBFC /* FreshTracksUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E2C24E352D5FE45600EBDBFC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					E2C24E3C2D5FE45600EBDBFC = {
+						CreatedOnToolsVersion = 16.0;
+					};
+					E2C24E4C2D5FE45700EBDBFC = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = E2C24E3C2D5FE45600EBDBFC;
+					};
+					E2C24E562D5FE45700EBDBFC = {
+						CreatedOnToolsVersion = 16.0;
+						TestTargetID = E2C24E3C2D5FE45600EBDBFC;
+					};
+				};
+			};
+			buildConfigurationList = E2C24E382D5FE45600EBDBFC /* Build configuration list for PBXProject "FreshTracks" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				fr,
+			);
+			mainGroup = E2C24E342D5FE45600EBDBFC;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = E2C24E3E2D5FE45600EBDBFC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				E2C24E3C2D5FE45600EBDBFC /* FreshTracks */,
+				E2C24E4C2D5FE45700EBDBFC /* FreshTracksTests */,
+				E2C24E562D5FE45700EBDBFC /* FreshTracksUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E2C24E3B2D5FE45600EBDBFC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2C24E4B2D5FE45700EBDBFC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2C24E552D5FE45700EBDBFC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E2C24E392D5FE45600EBDBFC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2C24E492D5FE45700EBDBFC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E2C24E532D5FE45700EBDBFC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2C24E4F2D5FE45700EBDBFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2C24E3C2D5FE45600EBDBFC /* FreshTracks */;
+			targetProxy = E2C24E4E2D5FE45700EBDBFC /* PBXContainerItemProxy */;
+		};
+		E2C24E592D5FE45700EBDBFC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E2C24E3C2D5FE45600EBDBFC /* FreshTracks */;
+			targetProxy = E2C24E582D5FE45700EBDBFC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		E2C24E5F2D5FE45700EBDBFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E2C24E602D5FE45700EBDBFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E2C24E622D5FE45700EBDBFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = FreshTracksIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 68H52UN5N6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FreshTracks/Resources/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Access to Music is necessary for the app to function";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kerquest.fresht;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "fresht app test";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E2C24E632D5FE45700EBDBFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = FreshTracksIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 68H52UN5N6;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = FreshTracks/Resources/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Access to Music is necessary for the app to function";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kerquest.fresht;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "fresht app test";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E2C24E652D5FE45700EBDBFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8GGV5V45Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bentz.FreshTracksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FreshTracks.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FreshTracks";
+			};
+			name = Debug;
+		};
+		E2C24E662D5FE45700EBDBFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8GGV5V45Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bentz.FreshTracksTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FreshTracks.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/FreshTracks";
+			};
+			name = Release;
+		};
+		E2C24E682D5FE45700EBDBFC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8GGV5V45Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bentz.FreshTracksUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FreshTracks;
+			};
+			name = Debug;
+		};
+		E2C24E692D5FE45700EBDBFC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 8GGV5V45Y5;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bentz.FreshTracksUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FreshTracks;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E2C24E382D5FE45600EBDBFC /* Build configuration list for PBXProject "FreshTracks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2C24E5F2D5FE45700EBDBFC /* Debug */,
+				E2C24E602D5FE45700EBDBFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2C24E612D5FE45700EBDBFC /* Build configuration list for PBXNativeTarget "FreshTracks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2C24E622D5FE45700EBDBFC /* Debug */,
+				E2C24E632D5FE45700EBDBFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2C24E642D5FE45700EBDBFC /* Build configuration list for PBXNativeTarget "FreshTracksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2C24E652D5FE45700EBDBFC /* Debug */,
+				E2C24E662D5FE45700EBDBFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E2C24E672D5FE45700EBDBFC /* Build configuration list for PBXNativeTarget "FreshTracksUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E2C24E682D5FE45700EBDBFC /* Debug */,
+				E2C24E692D5FE45700EBDBFC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E2C24E352D5FE45600EBDBFC /* Project object */;
+}
