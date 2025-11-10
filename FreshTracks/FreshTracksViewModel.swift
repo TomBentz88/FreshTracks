@@ -7,25 +7,30 @@
 
 import Foundation
 import MusicKit
-import UIKit
+import SwiftData
 import SwiftUI
+import UIKit
 
-
+@MainActor
 final class FreshTracksViewModel: ObservableObject {
 
-    private let storageKey = "freshtracks.playlists"
-
-    var store = FreshTracksPlaylistsStore()
-
+    private let context: ModelContext
     private var missingPlaylists = [FreshTracksPlaylist]()
-
 
     @Published var alert: FreshTracksAlert?
 
-    init() {
+    init(context: ModelContext) {
+        self.context = context
         Task {
             try? await syncPlaylists()
         }
+    }
+
+    func fetchPlaylists() throws -> [FreshTracksPlaylist] {
+        let descriptor = FetchDescriptor<FreshTracksPlaylist>(
+            sortBy: [SortDescriptor(\.tracksNumber)]
+        )
+        return try context.fetch(descriptor)
     }
 
     func requestAppleMusicAccess() async -> Bool {
@@ -35,13 +40,14 @@ final class FreshTracksViewModel: ObservableObject {
 
     func createAppleMusicPlaylist(_ playlist: FreshTracksPlaylist) async throws {
         await requestAppleMusicAccess()
+        playlist.refreshing = true
         let songs = try await fetchRecentSongs(limit: playlist.tracksNumber)
         let appleMusicPlaylist = try await addSoundsToPlaylist(named: "Fresh Tracks \(playlist.tracksNumber)", songs: songs)
-        store.update(withId: playlist.id) { ftPlaylist in
-            ftPlaylist.refreshing = false
-            ftPlaylist.appleMusicPlaylistId = appleMusicPlaylist.id
-            ftPlaylist.lastUpdateDate = Date()
-        }
+        playlist.refreshing = false
+        playlist.appleMusicPlaylistId = appleMusicPlaylist.id
+        playlist.lastUpdateDate = Date()
+        playlist.url = appleMusicPlaylist.url
+        try context.save()
     }
 
     public func openAppleMusicPlaylist(_ playlist: FreshTracksPlaylist) async throws {
@@ -76,25 +82,32 @@ final class FreshTracksViewModel: ObservableObject {
         }
     }
 
-    public func updateAllPlaylists() async throws {
-        if store.playlists.count == 0 {
-            store.loadPlaylists()
-        }
-        for playlist in store.playlists {
+    public func refreshAllPlaylists() async throws {
+        for playlist in try fetchPlaylists() {
             try await createAppleMusicPlaylist(playlist)
         }
     }
 
     func addPlaylist(tracksNumber: Int) -> Result<Void, PlaylistError> {
-        if store.playlists.contains(where: { $0.tracksNumber == tracksNumber }) {
+        let playlists: [FreshTracksPlaylist]
+        do {
+            playlists = try fetchPlaylists()
+        } catch {
+            return .failure(.swiftDataError(error))
+        }
+        if playlists.contains(where: { $0.tracksNumber == tracksNumber }) {
             return .failure(.alreadyExists)
         }
         let playlist = FreshTracksPlaylist(tracksNumber: tracksNumber)
-        store.add(playlist)
+        context.insert(playlist)
+        try? context.save()
         Task {
             do {
                 try await createAppleMusicPlaylist(playlist)
-            } catch { print(error) }
+            } catch {
+// TODO: handle error
+                print(error)
+            }
         }
         return .success(())
     }
@@ -103,7 +116,7 @@ final class FreshTracksViewModel: ObservableObject {
         let playlistsRequest = MusicLibraryRequest<Playlist>()
         let response = try await playlistsRequest.response()
 
-        for storedPlaylist in store.playlists {
+        for storedPlaylist in try fetchPlaylists() {
 
             guard let appleMusicPlaylistId = storedPlaylist.appleMusicPlaylistId else {
                 break
@@ -135,7 +148,21 @@ final class FreshTracksViewModel: ObservableObject {
 
     public func eraseMissingPlaylists() {
         for playlist in missingPlaylists {
-            store.remove(withId: playlist.id)
+            deletePlaylist(playlist)
+        }
+    }
+
+    public func deletePlaylist(_ playlist: FreshTracksPlaylist) {
+        context.delete(playlist)
+        try? context.save()
+    }
+
+    public func openAppleMusic(playlist: FreshTracksPlaylist) {
+        Task {
+            guard let url = playlist.url else {
+                return
+            }
+            await UIApplication.shared.open(url)
         }
     }
 }

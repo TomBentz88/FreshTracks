@@ -6,6 +6,7 @@
 //
 
 import AppIntents
+import SwiftData
 
 struct UpdatePlaylistsIntent: AppIntent {    
     static var title: LocalizedStringResource = "Update FreshTracks playlists"
@@ -14,7 +15,9 @@ struct UpdatePlaylistsIntent: AppIntent {
     static var suggestedInvocationPhrase: String? = "Mets à jour FreshTracks"
 
     func perform() async throws -> some IntentResult {
-        try await FreshTracksViewModel().updateAllPlaylists()
+        let container = try ModelContainer(for: FreshTracksPlaylist.self)
+        let context = await container.mainContext
+        try await FreshTracksViewModel(context: context).refreshAllPlaylists()
         return .result()
     }
 }

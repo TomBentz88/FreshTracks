@@ -7,11 +7,23 @@
 
 import Foundation
 import MusicKit
+import SwiftData
 
-public struct FreshTracksPlaylist: Identifiable, Codable {
-    public var id = UUID()
-    public var tracksNumber: Int
-    public var appleMusicPlaylistId: MusicItemID?
-    public var refreshing: Bool = true
-    public var lastUpdateDate: Date?
+@Model
+final class FreshTracksPlaylist {
+    @Attribute(.unique) var id: UUID
+    var tracksNumber: Int
+    var appleMusicPlaylistId: MusicItemID?
+    var refreshing: Bool
+    var lastUpdateDate: Date?
+    var url: URL?
+
+    init(id: UUID = UUID(), tracksNumber: Int, appleMusicPlaylistId: MusicItemID? = nil, refreshing: Bool = true, lastUpdateDate: Date? = nil, url: URL? = nil) {
+        self.id = id
+        self.tracksNumber = tracksNumber
+        self.appleMusicPlaylistId = appleMusicPlaylistId
+        self.refreshing = refreshing
+        self.lastUpdateDate = lastUpdateDate
+        self.url = url
+    }
 }

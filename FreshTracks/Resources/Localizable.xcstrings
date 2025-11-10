@@ -7,6 +7,12 @@
     "Créer" : {
 
     },
+    "Créer une playlist" : {
+
+    },
+    "Delete" : {
+
+    },
     "Entrez quelque chose" : {
 
     },
@@ -19,9 +25,6 @@
     "Last" : {
 
     },
-    "New" : {
-
-    },
     "No" : {
 
     },
@@ -29,6 +32,9 @@
 
     },
     "Rafraîchir FreshTracks" : {
+
+    },
+    "Refresh" : {
 
     },
     "Something went wrong" : {
@@ -41,6 +47,9 @@
 
     },
     "Update FreshTracks playlists" : {
+
+    },
+    "Vos playlists" : {
 
     },
     "Votre texte ici" : {

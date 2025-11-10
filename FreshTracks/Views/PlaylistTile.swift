@@ -1,5 +1,5 @@
 //
-//  PlaylistButton.swift
+//  PlaylistTile.swift
 //  FreshTracks
 //
 //  Created by Tom on 06/11/2025.
@@ -7,11 +7,9 @@
 
 import SwiftUI
 
-struct PlaylistButton: View {
-//    @Bindable var playlist: FreshTracksPlaylist
-    
-    let trackNumber: Int
-    let color: Color
+struct PlaylistTile: View {
+    let playlist: FreshTracksPlaylist
+
     var action: () -> Void
 
     var body: some View {
@@ -19,6 +17,7 @@ struct PlaylistButton: View {
             action()
         } label: {
             VStack() {
+                ProgressView().opacity(playlist.refreshing ? 1 : 0)
                 Spacer()
                 Text("Last")
                     .font(.headline)
@@ -26,7 +25,7 @@ struct PlaylistButton: View {
                     .frame(maxWidth: .infinity, alignment: .leading)
 
                 HStack(alignment: .bottom) {
-                    Text("\(trackNumber)")
+                    Text("\(playlist.tracksNumber)")
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundColor(.white)
@@ -41,12 +40,19 @@ struct PlaylistButton: View {
                 }.frame(maxWidth: .infinity, alignment: .leading)
 
             }
+            
             .padding()
             .frame(maxWidth: .infinity)
             .frame(height: 130)
-            .background(.linearGradient(colors: [color, color.opacity(0.8)], startPoint: .topLeading, endPoint: .bottomTrailing))
-            .cornerRadius(20)
+//            .background(.linearGradient(colors: [.secondary, .secondary.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing))
+            .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 20))
+//            .cornerRadius(20)
             //                .shadow(radius: 5)
         }
     }
+}
+
+#Preview {
+    let playlist = FreshTracksPlaylist(tracksNumber: 50)
+    PlaylistTile(playlist: playlist) {}
 }

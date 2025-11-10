@@ -1,18 +1,21 @@
 //
-//  ContentView.swift
+//  FreshTracksView.swift
 //  FreshTracks
 //
 //  Created by Tom on 14/02/2025.
 //
-
-import SwiftUI
 import AppIntents
 import _AppIntents_UIKit
+import SwiftData
+import SwiftUI
 
-struct ContentView: View {
+struct FreshTracksView: View {
+
+    @Environment(\.modelContext) private var context
+    @Query(sort: \FreshTracksPlaylist.tracksNumber, order: .forward) private var playlists: [FreshTracksPlaylist]
 
     @State private var showCreatePlaylistView: Bool = false
-    @FocusState private var isFocused: Bool
+    @FocusState private var textFieldFocused: Bool
     @State private var newPlaylistTrackNumberString: String = ""
     @State private var errorMessage: String?
 
@@ -28,10 +31,42 @@ struct ContentView: View {
         NavigationStack {
             ZStack {
                 VStack {
+                    Button {
+                        showCreatePlaylistView = true
+                        textFieldFocused = true
+                    } label: {
+                        Text("Créer une playlist")
+                            .font(.title2)
+                            .tint(.white)
+                            .fontWeight(.bold)
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                            .background {
+                                RoundedRectangle(cornerRadius: 14)
+                                    .foregroundStyle(.linearGradient(colors: [.freshTracksGreen, .freshTracksBlue], startPoint: .topLeading, endPoint: .bottomTrailing))
+                            }
+                            .padding()
+                    }
+
+                    HStack {
+                        Text("Vos playlists")
+                            .font(.title2)
+                            .fontWeight(.bold)
+                        Spacer()
+                    }.padding(.horizontal)
+
                     LazyVGrid(columns: columns, spacing: 10) {
 
-                        ForEach(viewModel.store.playlists) { playlist in
-                            playlistButtonWithAction(trackNumber: playlist.tracksNumber, color: .orange)
+                        ForEach(playlists) { playlist in
+                            PlaylistTile(playlist: playlist) {
+                                viewModel.openAppleMusic(playlist: playlist)
+                            }.contextMenu {
+                                Button(role: .destructive) {
+                                    viewModel.deletePlaylist(playlist)
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
                         }
                     }
                     .padding()
@@ -41,9 +76,10 @@ struct ContentView: View {
                 .navigationTitle("FreshTracks")
                 .toolbar {
                     ToolbarItem(placement: .primaryAction) {
-                        Button("New", systemImage: "plus") {
-                            showCreatePlaylistView = true
-                            isFocused = true
+                        Button("Refresh", systemImage: "arrow.trianglehead.2.clockwise") {
+                            Task {
+                                try? await viewModel.refreshAllPlaylists()
+                            }
                         }
                     }
                 }
@@ -71,7 +107,7 @@ struct ContentView: View {
                             .multilineTextAlignment(.center)
                             .keyboardType(.numberPad)
                             .padding()
-                            .focused($isFocused)
+                            .focused($textFieldFocused)
 
                         Button("Créer") {
                             if let number = Int(newPlaylistTrackNumberString), number > 0 {
@@ -96,8 +132,8 @@ struct ContentView: View {
 
                     }
                     .transition(.scale.combined(with: .opacity)) // animation apparition
-                    .glassEffect()
-                    .padding()
+                    .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 28))
+                    .frame(width: 300)
 
                 }
             }
@@ -121,12 +157,15 @@ struct ContentView: View {
             }
         }
     }
-
-    private func playlistButtonWithAction(trackNumber: Int, color: Color) -> PlaylistButton {
-        return PlaylistButton(trackNumber: trackNumber, color: color) {}
-    }
 }
 
 #Preview {
-    ContentView(viewModel: FreshTracksViewModel())
+    let previewContainer = try! ModelContainer(
+        for: FreshTracksPlaylist.self,
+        configurations: ModelConfiguration(isStoredInMemoryOnly: true)
+    )
+    let context = previewContainer.mainContext
+    let viewModel = FreshTracksViewModel(context: context)
+    return FreshTracksView(viewModel: viewModel)
+        .modelContainer(previewContainer)
 }
