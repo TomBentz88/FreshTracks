@@ -28,132 +28,136 @@ struct FreshTracksView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            ZStack {
-                VStack {
-                    Button {
-                        showCreatePlaylistView = true
-                        textFieldFocused = true
-                    } label: {
-                        Text("Créer une playlist")
-                            .font(.title2)
-                            .tint(.white)
-                            .fontWeight(.bold)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background {
-                                RoundedRectangle(cornerRadius: 14)
-                                    .foregroundStyle(.linearGradient(colors: [.freshTracksGreen, .freshTracksBlue], startPoint: .topLeading, endPoint: .bottomTrailing))
-                            }
-                            .padding()
-                    }
+        ZStack {
+            NavigationStack {
+                GeometryReader { _ in // ugly hack to stop the view from moving on keyboard apparition (.ignoreSafeArea(.keyboard) not working)
+                    VStack {
+                        Button {
+                            showCreatePlaylistView = true
+                            textFieldFocused = true
+                        } label: {
+                            Text("Créer une playlist")
+                                .font(.title2)
+                                .tint(.white)
+                                .fontWeight(.bold)
+                                .frame(maxWidth: .infinity)
+                                .padding()
+                                .background {
+                                    RoundedRectangle(cornerRadius: 14)
+                                        .foregroundStyle(.linearGradient(colors: [.freshTracksGreen, .freshTracksBlue], startPoint: .topLeading, endPoint: .bottomTrailing))
+                                }
+                                .padding()
+                        }
 
-                    HStack {
-                        Text("Vos playlists")
-                            .font(.title2)
-                            .fontWeight(.bold)
-                        Spacer()
-                    }.padding(.horizontal)
+                        HStack {
+                            Text("Vos playlists")
+                                .font(.title2)
+                                .fontWeight(.bold)
+                            Spacer()
+                        }.padding(.horizontal)
 
-                    LazyVGrid(columns: columns, spacing: 10) {
+                        LazyVGrid(columns: columns, spacing: 10) {
 
-                        ForEach(playlists) { playlist in
-                            PlaylistTile(playlist: playlist) {
-                                viewModel.openAppleMusic(playlist: playlist)
-                            }.contextMenu {
-                                Button(role: .destructive) {
-                                    viewModel.deletePlaylist(playlist)
-                                } label: {
-                                    Label("Delete", systemImage: "trash")
+                            ForEach(playlists) { playlist in
+                                PlaylistTile(playlist: playlist) {
+                                    viewModel.openAppleMusic(playlist: playlist)
+                                }.contextMenu {
+                                    Button(role: .destructive) {
+                                        viewModel.deletePlaylist(playlist)
+                                    } label: {
+                                        Label("Delete", systemImage: "trash")
+                                    }
                                 }
                             }
                         }
-                    }
-                    .padding()
-
-                    Spacer()
-                }
-                .navigationTitle("FreshTracks")
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        Button("Refresh", systemImage: "arrow.trianglehead.2.clockwise") {
-                            Task {
-                                try? await viewModel.refreshAllPlaylists()
-                            }
-                        }
-                    }
-                }
-
-                // Popup Overlay
-                if showCreatePlaylistView {
-                    // Fond semi-transparent
-                    Color.black.opacity(0.4)
-                        .blur(radius: 0.5)
-                        .edgesIgnoringSafeArea(.all)
-                        .onTapGesture {
-                            withAnimation {
-                                showCreatePlaylistView = false
-                            }
-                        }
-
-                    // Contenu popup
-                    VStack(spacing: 20) {
-                        Text("Entrez quelque chose")
-                            .font(.headline)
-                            .padding(.top)
-
-                        TextField("Votre texte ici", text: $newPlaylistTrackNumberString)
-                            .font(Font.largeTitle)
-                            .multilineTextAlignment(.center)
-                            .keyboardType(.numberPad)
-                            .padding()
-                            .focused($textFieldFocused)
-
-                        Button("Créer") {
-                            if let number = Int(newPlaylistTrackNumberString), number > 0 {
-                                let result = viewModel.addPlaylist(tracksNumber: number)
-                                if case .failure(let error) = result {
-                                    errorMessage = error.localizedDescription
-                                }
-                            }
-
-                            print("Texte saisi : \(newPlaylistTrackNumberString)")
-
-                            showCreatePlaylistView = false
-                        }
-                        .alert("Erreur", isPresented: .constant(errorMessage != nil)) {
-                            Button("OK") { errorMessage = nil }
-                        } message: {
-                            Text(errorMessage ?? "")
-                        }
-                        .frame(width: 100, height: 60)
-                        .glassEffect()
                         .padding()
 
+                        Spacer()
                     }
-                    .transition(.scale.combined(with: .opacity)) // animation apparition
-                    .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 28))
-                    .frame(width: 300)
-
+                    .navigationTitle("FreshTracks")
+                    .toolbar {
+                        ToolbarItem(placement: .primaryAction) {
+                            Button("Refresh", systemImage: "arrow.trianglehead.2.clockwise") {
+                                Task {
+                                    try? await viewModel.refreshAllPlaylists()
+                                }
+                            }
+                        }
+                    }
                 }
             }
-            .alert(item: $viewModel.alert) { alert in
-                switch alert.type {
-                case .recreateMissingPlaylist:
-                    return Alert(
-                        title: Text("Something went wrong"),
-                        message: Text(alert.message),
-                        primaryButton: .default(Text("Yes"), action: {
-                            Task {
-                                viewModel.recreateMissingPlaylists()
+
+            // Popup Overlay
+            if showCreatePlaylistView {
+                // Fond semi-transparent
+                Color.black.opacity(0.4)
+                    .blur(radius: 0.5)
+                    .edgesIgnoringSafeArea(.all)
+                    .onTapGesture {
+                        withAnimation {
+                            showCreatePlaylistView = false
+                            textFieldFocused = false
+                        }
+                    }
+
+                // Contenu popup
+                VStack(spacing: 20) {
+                    Text("Entrez quelque chose")
+                        .font(.headline)
+                        .padding(.top)
+
+                    TextField("Votre texte ici", text: $newPlaylistTrackNumberString)
+                        .font(Font.largeTitle)
+                        .multilineTextAlignment(.center)
+                        .keyboardType(.numberPad)
+                        .padding()
+                        .focused($textFieldFocused)
+
+                    Button("Créer") {
+                        if let number = Int(newPlaylistTrackNumberString), number > 0 {
+                            let result = viewModel.addPlaylist(tracksNumber: number)
+                            if case .failure(let error) = result {
+                                errorMessage = error.localizedDescription
                             }
-                        }),
-                        secondaryButton: .default(Text("No"), action: {
-                            Task {
-                                viewModel.eraseMissingPlaylists()
-                            }
-                    }))
+                        }
+
+                        print("Texte saisi : \(newPlaylistTrackNumberString)")
+
+                        showCreatePlaylistView = false
+                        textFieldFocused = false
+                    }
+                    .alert("Erreur", isPresented: .constant(errorMessage != nil)) {
+                        Button("OK") { errorMessage = nil }
+                    } message: {
+                        Text(errorMessage ?? "")
+                    }
+                    .frame(width: 100, height: 60)
+                    .glassEffect()
+                    .padding()
+
                 }
+                .transition(.scale.combined(with: .opacity)) // animation apparition
+                .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 28))
+                .frame(width: 300)
+
+            }
+        }
+        .alert(item: $viewModel.alert) { alert in
+            switch alert.type {
+            case .recreateMissingPlaylist:
+                return Alert(
+                    title: Text("Something went wrong"),
+                    message: Text(alert.message),
+                    primaryButton: .default(Text("Yes"), action: {
+                        Task {
+                            viewModel.recreateMissingPlaylists()
+                        }
+                    }),
+                    secondaryButton: .default(Text("No"), action: {
+                        Task {
+                            viewModel.eraseMissingPlaylists()
+                        }
+                    }))
             }
         }
     }
