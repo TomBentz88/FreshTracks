@@ -16,8 +16,10 @@ final class FreshTracksViewModel: ObservableObject {
 
     private let context: ModelContext
     private var missingPlaylists = [FreshTracksPlaylist]()
+    @Published var selectedPlaylist: Playlist? = nil
 
     @Published var alert: FreshTracksAlert?
+    @Published var isRefreshing: Bool = false
 
     init(context: ModelContext) {
         self.context = context
@@ -78,38 +80,37 @@ final class FreshTracksViewModel: ObservableObject {
         if let existingPlaylist = response.items.first(where: { $0.name == playlistName }) {
             return try await MusicLibrary.shared.edit(existingPlaylist, items: songs)
         } else {
-            return try await MusicLibrary.shared.createPlaylist(name: playlistName, items: songs)
+
+            return try await MusicLibrary.shared.createPlaylist(name: playlistName, description: "\(songs.count) dernier morceaux de la bibliothèque", authorDisplayName: "Fresh Tracks", items: songs)
         }
     }
 
     public func refreshAllPlaylists() async throws {
+        isRefreshing = true
         for playlist in try fetchPlaylists() {
             try await createAppleMusicPlaylist(playlist)
         }
+        isRefreshing = false
     }
 
-    func addPlaylist(tracksNumber: Int) -> Result<Void, PlaylistError> {
-        let playlists: [FreshTracksPlaylist]
-        do {
-            playlists = try fetchPlaylists()
-        } catch {
-            return .failure(.swiftDataError(error))
-        }
+    func addPlaylist(tracksNumber: Int) async throws {
+        let playlists = try fetchPlaylists()
+
         if playlists.contains(where: { $0.tracksNumber == tracksNumber }) {
-            return .failure(.alreadyExists)
+            throw PlaylistError.alreadyExists
         }
+
         let playlist = FreshTracksPlaylist(tracksNumber: tracksNumber)
         context.insert(playlist)
-        try? context.save()
-        Task {
-            do {
-                try await createAppleMusicPlaylist(playlist)
-            } catch {
-// TODO: handle error
-                print(error)
-            }
+        try context.save()
+
+        // L’appel réseau se fait proprement en asynchrone ici :
+        do {
+            try await createAppleMusicPlaylist(playlist)
+        } catch {
+            print("Erreur lors de la création Apple Music:", error)
+//            throw PlaylistError.appleMusicError(error)
         }
-        return .success(())
     }
 
     private func syncPlaylists() async throws {
@@ -163,6 +164,21 @@ final class FreshTracksViewModel: ObservableObject {
                 return
             }
             await UIApplication.shared.open(url)
+        }
+    }
+
+    public func tapOnPlaylist(_ playlist: FreshTracksPlaylist) {
+        Task {
+            await selectPlaylist(playlist)
+        }
+    }
+
+    public func selectPlaylist(_ playlist: FreshTracksPlaylist) async {
+        do {
+            let amPlaylist = try await playlist.appleMusicPlaylist()
+            selectedPlaylist = amPlaylist
+        } catch {
+            alert = FreshTracksAlert(type: .error, message: error.localizedDescription)
         }
     }
 }

@@ -45,7 +45,7 @@ struct PlaylistTile: View {
             .frame(maxWidth: .infinity)
             .frame(height: 130)
 //            .background(.linearGradient(colors: [.secondary, .secondary.opacity(0.3)], startPoint: .topLeading, endPoint: .bottomTrailing))
-            .glassEffect(.regular, in: RoundedRectangle(cornerRadius: 20))
+            .glassEffect(.clear, in: RoundedRectangle(cornerRadius: 20))
 //            .cornerRadius(20)
             //                .shadow(radius: 5)
         }
