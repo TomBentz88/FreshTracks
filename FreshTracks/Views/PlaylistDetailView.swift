@@ -15,21 +15,37 @@ struct PlaylistDetailView: View {
     var body: some View {
         List {
             Section {
+                HStack {
+                    Spacer()
+                    goToAppleMusic
+                    Spacer()
+                }.listRowSeparator(.hidden)
                 ForEach(playlist.tracks ?? []) { track in
                     TrackRow(track: track)
+                        .listRowInsets(EdgeInsets(top: 4, leading: 10, bottom: 4, trailing: 10))
                 }
             } header: {
-                goToAppleMusic
+
             }
             .navigationTitle(playlist.name)
         }
+        .listStyle(.inset)
     }
 
     private var goToAppleMusic: some View {
         Button {
 
         } label: {
-            Label("Ouvrir dans Apple Music", systemImage: "music.note")
+            Label {
+                Text("Ouvrir dans Apple Music")
+            } icon: {
+                Image("apple_music_icon")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 20)
+            }
+
+                .labelReservedIconWidth(20)
                 .tint(.white)
                 .fontWeight(.semibold)
                 .padding()
@@ -53,10 +69,10 @@ struct TrackRow: View {
             VStack(alignment: .leading) {
                 Text(track.title)
                     .lineLimit(1)
-                    .font(.caption)
-                Spacer()
+                    .font(.subheadline)
                 Text(track.artistName)
-                    .font(.caption2)
+                    .lineLimit(1)
+                    .font(.footnote)
                     .foregroundStyle(Color(.secondaryLabel))
             }
         }

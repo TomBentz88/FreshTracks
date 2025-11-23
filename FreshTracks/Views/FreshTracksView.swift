@@ -29,11 +29,10 @@ struct FreshTracksView: View {
     }
 
     var body: some View {
-        ZStack {
-            NavigationStack {
+        NavigationStack {
+            ZStack {
                 VStack {
                     if playlists.count == 0 {
-//                        Spacer()
                         onboardingStateView
                             .padding()
                         Spacer()
@@ -42,26 +41,25 @@ struct FreshTracksView: View {
                             .ignoresSafeArea(.keyboard)
                     }
                 }
-                .navigationDestination(item: $viewModel.selectedPlaylist) { playlist in
-                    PlaylistDetailView(playlist: playlist)
-                }
-                .navigationTitle("Fresh Tracks")
-                .toolbar {
-                    ToolbarItem(placement: .primaryAction) {
-                        Button("Refresh", systemImage: "arrow.trianglehead.2.clockwise") {
-                            Task {
-                                try? await viewModel.refreshAllPlaylists()
-                            }
+
+                smallCreatePlaylistButton
+
+                playlistCreation
+            }.navigationDestination(item: $viewModel.selectedPlaylist) { playlist in
+                PlaylistDetailView(playlist: playlist)
+            }
+            .navigationTitle("Fresh Tracks")
+            .toolbar {
+                ToolbarItem(placement: .primaryAction) {
+                    Button("Refresh", systemImage: "arrow.trianglehead.2.clockwise") {
+                        Task {
+                            try? await viewModel.refreshAllPlaylists()
                         }
-                        .symbolEffect(.rotate, options: .repeat(.continuous), value: viewModel.isRefreshing)
-                        .disabled(viewModel.isRefreshing)
                     }
+                    .symbolEffect(.rotate, options: .repeat(.continuous), value: viewModel.isRefreshing)
+                    .disabled(viewModel.isRefreshing)
                 }
             }
-
-            smallCreatePlaylistButton
-
-            playlistCreation
         }
         .alert(item: $viewModel.alert) { alert in
             switch alert.type {
@@ -170,14 +168,7 @@ struct FreshTracksView: View {
             Section {
                 ForEach(playlists) { playlist in
                     PlaylistRow(playlist: playlist) {
-
-                    }
-                    .contextMenu {
-                        Button(role: .destructive) {
-                            viewModel.deletePlaylist(playlist)
-                        } label: {
-                            Label("Supprimer", systemImage: "trash")
-                        }
+                        viewModel.tapOnPlaylist(playlist)
                     }
                     .swipeActions(edge: .trailing) {
                         Button(role: .destructive) {
@@ -185,9 +176,6 @@ struct FreshTracksView: View {
                         } label: {
                             Label("Supprimer", systemImage: "trash")
                         }
-                    }
-                    .onTapGesture {
-                        viewModel.tapOnPlaylist(playlist)
                     }
                     .listRowSeparator(.hidden)
                     .listRowBackground(Color.clear)
