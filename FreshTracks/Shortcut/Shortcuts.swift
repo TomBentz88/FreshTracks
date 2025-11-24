@@ -20,4 +20,8 @@ struct FreshTracksShortcuts: AppShortcutsProvider {
             systemImageName: "music.note.list"
         )
     }
+
+    static var shortcutTileColor: ShortcutTileColor {
+        .teal
+    }
 }

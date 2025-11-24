@@ -42,8 +42,6 @@ struct FreshTracksView: View {
                     }
                 }
 
-                smallCreatePlaylistButton
-
                 playlistCreation
             }.navigationDestination(item: $viewModel.selectedPlaylist) { playlist in
                 PlaylistDetailView(playlist: playlist)
@@ -59,6 +57,16 @@ struct FreshTracksView: View {
                     .symbolEffect(.rotate, options: .repeat(.continuous), value: viewModel.isRefreshing)
                     .disabled(viewModel.isRefreshing)
                 }
+                if !showCreatePlaylistView {
+                    ToolbarSpacer(.flexible, placement: .bottomBar)
+                    ToolbarItem(placement: .bottomBar) {
+                        Button("Add", systemImage: "plus") {
+                            showCreatePlaylist()
+                        }
+                        .buttonStyle(.glassProminent)
+                        .tint(.freshTracksBlue)
+                    }
+                }
             }
         }
         .alert(item: $viewModel.alert) { alert in
@@ -69,24 +77,6 @@ struct FreshTracksView: View {
                 alertFor(alert)
             }
         }
-    }
-
-    private var smallCreatePlaylistButton: some View {
-        Button("Add", systemImage: "plus") {
-            showCreatePlaylist()
-
-        }
-        .tint(.white.opacity(0.85))
-        .padding(13)
-        .glassEffect(.clear.tint(.freshTracksBlue), in: Circle())
-        .labelStyle(.iconOnly)
-        .font(.title2)
-        .fontWeight(.medium)
-
-        .frame(maxWidth: .infinity,maxHeight: .infinity, alignment: .bottomTrailing)
-        .padding(.bottom, 28)
-        .ignoresSafeArea()
-        .padding(.trailing, 27)
     }
 
     private var emptyStateView: some View {
@@ -166,6 +156,9 @@ struct FreshTracksView: View {
     private var playlistList: some View {
         List {
             Section {
+                shortcutView
+                    .listRowSeparator(.hidden)
+
                 ForEach(playlists) { playlist in
                     PlaylistRow(playlist: playlist) {
                         viewModel.tapOnPlaylist(playlist)
@@ -191,6 +184,25 @@ struct FreshTracksView: View {
         }
         .scrollContentBackground(.hidden)
         .edgesIgnoringSafeArea(.bottom)
+    }
+
+    private var shortcutView: some View {
+        VStack {
+            HStack {
+                Label("Suggestion", systemImage: "lightbulb.min.fill")
+                    .tint(.primary)
+                    .foregroundStyle(.primary)
+                    .padding()
+            }
+            Text("Utilisez l'app Raccourcis pour automatiser le rafraichissement des playslits.")
+                .font(.subheadline)
+                .multilineTextAlignment(.center)
+                .foregroundStyle(.secondary)
+                .padding(.horizontal)
+            ShortcutsLink()
+                .shortcutsLinkStyle(.automaticOutline)
+                .padding()
+        }.glassEffect(.clear.tint(.gray.opacity(0.15)),in: RoundedRectangle(cornerRadius: 20))
     }
 
     private var backgroundMosaic: some View {
